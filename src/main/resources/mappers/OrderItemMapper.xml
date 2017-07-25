@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mall.dao.OrderItemMapper" >
+  <resultMap id="BaseResultMap" type="com.mall.pojo.OrderItem" >
+    <constructor >
+      <idArg column="order_item_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_item_user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_item_order_no" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="order_item_product_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_item_product_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_item_product_image" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_item_current_unit_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="order_item_quantity" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_item_total_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="order_item_create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="order_item_update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    order_item_id, order_item_user_id, order_item_order_no, order_item_product_id, order_item_product_name, 
+    order_item_product_image, order_item_current_unit_price, order_item_quantity, order_item_total_price, 
+    order_item_create_time, order_item_update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mall_order_item
+    where order_item_id = #{orderItemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mall_order_item
+    where order_item_id = #{orderItemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mall.pojo.OrderItem" >
+    insert into mall_order_item (order_item_id, order_item_user_id, order_item_order_no, 
+      order_item_product_id, order_item_product_name, 
+      order_item_product_image, order_item_current_unit_price, 
+      order_item_quantity, order_item_total_price, 
+      order_item_create_time, order_item_update_time
+      )
+    values (#{orderItemId,jdbcType=INTEGER}, #{orderItemUserId,jdbcType=INTEGER}, #{orderItemOrderNo,jdbcType=BIGINT}, 
+      #{orderItemProductId,jdbcType=INTEGER}, #{orderItemProductName,jdbcType=VARCHAR}, 
+      #{orderItemProductImage,jdbcType=VARCHAR}, #{orderItemCurrentUnitPrice,jdbcType=DECIMAL}, 
+      #{orderItemQuantity,jdbcType=INTEGER}, #{orderItemTotalPrice,jdbcType=DECIMAL}, 
+      now(), now()
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mall.pojo.OrderItem" >
+    insert into mall_order_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderItemId != null" >
+        order_item_id,
+      </if>
+      <if test="orderItemUserId != null" >
+        order_item_user_id,
+      </if>
+      <if test="orderItemOrderNo != null" >
+        order_item_order_no,
+      </if>
+      <if test="orderItemProductId != null" >
+        order_item_product_id,
+      </if>
+      <if test="orderItemProductName != null" >
+        order_item_product_name,
+      </if>
+      <if test="orderItemProductImage != null" >
+        order_item_product_image,
+      </if>
+      <if test="orderItemCurrentUnitPrice != null" >
+        order_item_current_unit_price,
+      </if>
+      <if test="orderItemQuantity != null" >
+        order_item_quantity,
+      </if>
+      <if test="orderItemTotalPrice != null" >
+        order_item_total_price,
+      </if>
+      <if test="orderItemCreateTime != null" >
+        order_item_create_time,
+      </if>
+      <if test="orderItemUpdateTime != null" >
+        order_item_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderItemId != null" >
+        #{orderItemId,jdbcType=INTEGER},
+      </if>
+      <if test="orderItemUserId != null" >
+        #{orderItemUserId,jdbcType=INTEGER},
+      </if>
+      <if test="orderItemOrderNo != null" >
+        #{orderItemOrderNo,jdbcType=BIGINT},
+      </if>
+      <if test="orderItemProductId != null" >
+        #{orderItemProductId,jdbcType=INTEGER},
+      </if>
+      <if test="orderItemProductName != null" >
+        #{orderItemProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderItemProductImage != null" >
+        #{orderItemProductImage,jdbcType=VARCHAR},
+      </if>
+      <if test="orderItemCurrentUnitPrice != null" >
+        #{orderItemCurrentUnitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderItemQuantity != null" >
+        #{orderItemQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="orderItemTotalPrice != null" >
+        #{orderItemTotalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderItemCreateTime != null" >
+        now(),
+      </if>
+      <if test="orderItemUpdateTime != null" >
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mall.pojo.OrderItem" >
+    update mall_order_item
+    <set >
+      <if test="orderItemUserId != null" >
+        order_item_user_id = #{orderItemUserId,jdbcType=INTEGER},
+      </if>
+      <if test="orderItemOrderNo != null" >
+        order_item_order_no = #{orderItemOrderNo,jdbcType=BIGINT},
+      </if>
+      <if test="orderItemProductId != null" >
+        order_item_product_id = #{orderItemProductId,jdbcType=INTEGER},
+      </if>
+      <if test="orderItemProductName != null" >
+        order_item_product_name = #{orderItemProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderItemProductImage != null" >
+        order_item_product_image = #{orderItemProductImage,jdbcType=VARCHAR},
+      </if>
+      <if test="orderItemCurrentUnitPrice != null" >
+        order_item_current_unit_price = #{orderItemCurrentUnitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderItemQuantity != null" >
+        order_item_quantity = #{orderItemQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="orderItemTotalPrice != null" >
+        order_item_total_price = #{orderItemTotalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderItemCreateTime != null" >
+        order_item_create_time = #{orderItemCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderItemUpdateTime != null" >
+        order_item_update_time = now(),
+      </if>
+    </set>
+    where order_item_id = #{orderItemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mall.pojo.OrderItem" >
+    update mall_order_item
+    set order_item_user_id = #{orderItemUserId,jdbcType=INTEGER},
+      order_item_order_no = #{orderItemOrderNo,jdbcType=BIGINT},
+      order_item_product_id = #{orderItemProductId,jdbcType=INTEGER},
+      order_item_product_name = #{orderItemProductName,jdbcType=VARCHAR},
+      order_item_product_image = #{orderItemProductImage,jdbcType=VARCHAR},
+      order_item_current_unit_price = #{orderItemCurrentUnitPrice,jdbcType=DECIMAL},
+      order_item_quantity = #{orderItemQuantity,jdbcType=INTEGER},
+      order_item_total_price = #{orderItemTotalPrice,jdbcType=DECIMAL},
+      order_item_create_time = #{orderItemCreateTime,jdbcType=TIMESTAMP},
+      order_item_update_time = now()
+    where order_item_id = #{orderItemId,jdbcType=INTEGER}
+  </update>
+</mapper>

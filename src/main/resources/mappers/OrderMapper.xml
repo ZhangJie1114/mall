@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mall.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.mall.pojo.Order" >
+    <constructor >
+      <idArg column="order_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_no" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="order_user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_shipping_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_payment" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="order_payment_type" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_postage" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_payment_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="order_send_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="order_end_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="order_close_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="order_create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="order_update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    order_id, order_no, order_user_id, order_shipping_id, order_payment, order_payment_type, 
+    order_postage, order_status, order_payment_time, order_send_time, order_end_time, 
+    order_close_time, order_create_time, order_update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mall_order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mall_order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mall.pojo.Order" >
+    insert into mall_order (order_id, order_no, order_user_id, 
+      order_shipping_id, order_payment, order_payment_type, 
+      order_postage, order_status, order_payment_time, 
+      order_send_time, order_end_time, order_close_time, 
+      order_create_time, order_update_time)
+    values (#{orderId,jdbcType=INTEGER}, #{orderNo,jdbcType=BIGINT}, #{orderUserId,jdbcType=INTEGER}, 
+      #{orderShippingId,jdbcType=INTEGER}, #{orderPayment,jdbcType=DECIMAL}, #{orderPaymentType,jdbcType=INTEGER}, 
+      #{orderPostage,jdbcType=INTEGER}, #{orderStatus,jdbcType=INTEGER}, #{orderPaymentTime,jdbcType=TIMESTAMP}, 
+      #{orderSendTime,jdbcType=TIMESTAMP}, #{orderEndTime,jdbcType=TIMESTAMP}, #{orderCloseTime,jdbcType=TIMESTAMP}, 
+      now(), now())
+  </insert>
+  <insert id="insertSelective" parameterType="com.mall.pojo.Order" >
+    insert into mall_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="orderUserId != null" >
+        order_user_id,
+      </if>
+      <if test="orderShippingId != null" >
+        order_shipping_id,
+      </if>
+      <if test="orderPayment != null" >
+        order_payment,
+      </if>
+      <if test="orderPaymentType != null" >
+        order_payment_type,
+      </if>
+      <if test="orderPostage != null" >
+        order_postage,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="orderPaymentTime != null" >
+        order_payment_time,
+      </if>
+      <if test="orderSendTime != null" >
+        order_send_time,
+      </if>
+      <if test="orderEndTime != null" >
+        order_end_time,
+      </if>
+      <if test="orderCloseTime != null" >
+        order_close_time,
+      </if>
+      <if test="orderCreateTime != null" >
+        order_create_time,
+      </if>
+      <if test="orderUpdateTime != null" >
+        order_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=BIGINT},
+      </if>
+      <if test="orderUserId != null" >
+        #{orderUserId,jdbcType=INTEGER},
+      </if>
+      <if test="orderShippingId != null" >
+        #{orderShippingId,jdbcType=INTEGER},
+      </if>
+      <if test="orderPayment != null" >
+        #{orderPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="orderPaymentType != null" >
+        #{orderPaymentType,jdbcType=INTEGER},
+      </if>
+      <if test="orderPostage != null" >
+        #{orderPostage,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderPaymentTime != null" >
+        #{orderPaymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderSendTime != null" >
+        #{orderSendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderEndTime != null" >
+        #{orderEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderCloseTime != null" >
+        #{orderCloseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderCreateTime != null" >
+        now(),
+      </if>
+      <if test="orderUpdateTime != null" >
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mall.pojo.Order" >
+    update mall_order
+    <set >
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=BIGINT},
+      </if>
+      <if test="orderUserId != null" >
+        order_user_id = #{orderUserId,jdbcType=INTEGER},
+      </if>
+      <if test="orderShippingId != null" >
+        order_shipping_id = #{orderShippingId,jdbcType=INTEGER},
+      </if>
+      <if test="orderPayment != null" >
+        order_payment = #{orderPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="orderPaymentType != null" >
+        order_payment_type = #{orderPaymentType,jdbcType=INTEGER},
+      </if>
+      <if test="orderPostage != null" >
+        order_postage = #{orderPostage,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderPaymentTime != null" >
+        order_payment_time = #{orderPaymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderSendTime != null" >
+        order_send_time = #{orderSendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderEndTime != null" >
+        order_end_time = #{orderEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderCloseTime != null" >
+        order_close_time = #{orderCloseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderCreateTime != null" >
+        order_create_time = #{orderCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderUpdateTime != null" >
+        order_update_time = now(),
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mall.pojo.Order" >
+    update mall_order
+    set order_no = #{orderNo,jdbcType=BIGINT},
+      order_user_id = #{orderUserId,jdbcType=INTEGER},
+      order_shipping_id = #{orderShippingId,jdbcType=INTEGER},
+      order_payment = #{orderPayment,jdbcType=DECIMAL},
+      order_payment_type = #{orderPaymentType,jdbcType=INTEGER},
+      order_postage = #{orderPostage,jdbcType=INTEGER},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      order_payment_time = #{orderPaymentTime,jdbcType=TIMESTAMP},
+      order_send_time = #{orderSendTime,jdbcType=TIMESTAMP},
+      order_end_time = #{orderEndTime,jdbcType=TIMESTAMP},
+      order_close_time = #{orderCloseTime,jdbcType=TIMESTAMP},
+      order_create_time = #{orderCreateTime,jdbcType=TIMESTAMP},
+      order_update_time = now()
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+</mapper>

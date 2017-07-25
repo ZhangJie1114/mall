@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mall.dao.ShippingMapper" >
+  <resultMap id="BaseResultMap" type="com.mall.pojo.Shipping" >
+    <constructor >
+      <idArg column="shipping_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="shipping_user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="shipping_receiver_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="shipping_receiver_phone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="shipping_receiver_mobile" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="shipping_receiver_province" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="shipping_receiver_city" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="shipping_receiver_district" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="shipping_receiver_address" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="shipping_receiver_zip" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="shipping_create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="shipping_update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    shipping_id, shipping_user_id, shipping_receiver_name, shipping_receiver_phone, shipping_receiver_mobile, 
+    shipping_receiver_province, shipping_receiver_city, shipping_receiver_district, shipping_receiver_address, 
+    shipping_receiver_zip, shipping_create_time, shipping_update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mall_shipping
+    where shipping_id = #{shippingId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mall_shipping
+    where shipping_id = #{shippingId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mall.pojo.Shipping" >
+    insert into mall_shipping (shipping_id, shipping_user_id, shipping_receiver_name, 
+      shipping_receiver_phone, shipping_receiver_mobile, 
+      shipping_receiver_province, shipping_receiver_city, 
+      shipping_receiver_district, shipping_receiver_address, 
+      shipping_receiver_zip, shipping_create_time, 
+      shipping_update_time)
+    values (#{shippingId,jdbcType=INTEGER}, #{shippingUserId,jdbcType=INTEGER}, #{shippingReceiverName,jdbcType=VARCHAR}, 
+      #{shippingReceiverPhone,jdbcType=VARCHAR}, #{shippingReceiverMobile,jdbcType=VARCHAR}, 
+      #{shippingReceiverProvince,jdbcType=VARCHAR}, #{shippingReceiverCity,jdbcType=VARCHAR}, 
+      #{shippingReceiverDistrict,jdbcType=VARCHAR}, #{shippingReceiverAddress,jdbcType=VARCHAR}, 
+      #{shippingReceiverZip,jdbcType=VARCHAR}, now(),now())
+  </insert>
+  <insert id="insertSelective" parameterType="com.mall.pojo.Shipping" >
+    insert into mall_shipping
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shippingId != null" >
+        shipping_id,
+      </if>
+      <if test="shippingUserId != null" >
+        shipping_user_id,
+      </if>
+      <if test="shippingReceiverName != null" >
+        shipping_receiver_name,
+      </if>
+      <if test="shippingReceiverPhone != null" >
+        shipping_receiver_phone,
+      </if>
+      <if test="shippingReceiverMobile != null" >
+        shipping_receiver_mobile,
+      </if>
+      <if test="shippingReceiverProvince != null" >
+        shipping_receiver_province,
+      </if>
+      <if test="shippingReceiverCity != null" >
+        shipping_receiver_city,
+      </if>
+      <if test="shippingReceiverDistrict != null" >
+        shipping_receiver_district,
+      </if>
+      <if test="shippingReceiverAddress != null" >
+        shipping_receiver_address,
+      </if>
+      <if test="shippingReceiverZip != null" >
+        shipping_receiver_zip,
+      </if>
+      <if test="shippingCreateTime != null" >
+        shipping_create_time,
+      </if>
+      <if test="shippingUpdateTime != null" >
+        shipping_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shippingId != null" >
+        #{shippingId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingUserId != null" >
+        #{shippingUserId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingReceiverName != null" >
+        #{shippingReceiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingReceiverPhone != null" >
+        #{shippingReceiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingReceiverMobile != null" >
+        #{shippingReceiverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingReceiverProvince != null" >
+        #{shippingReceiverProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingReceiverCity != null" >
+        #{shippingReceiverCity,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingReceiverDistrict != null" >
+        #{shippingReceiverDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingReceiverAddress != null" >
+        #{shippingReceiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingReceiverZip != null" >
+        #{shippingReceiverZip,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingCreateTime != null" >
+        now(),
+      </if>
+      <if test="shippingUpdateTime != null" >
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mall.pojo.Shipping" >
+    update mall_shipping
+    <set >
+      <if test="shippingUserId != null" >
+        shipping_user_id = #{shippingUserId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingReceiverName != null" >
+        shipping_receiver_name = #{shippingReceiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingReceiverPhone != null" >
+        shipping_receiver_phone = #{shippingReceiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingReceiverMobile != null" >
+        shipping_receiver_mobile = #{shippingReceiverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingReceiverProvince != null" >
+        shipping_receiver_province = #{shippingReceiverProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingReceiverCity != null" >
+        shipping_receiver_city = #{shippingReceiverCity,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingReceiverDistrict != null" >
+        shipping_receiver_district = #{shippingReceiverDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingReceiverAddress != null" >
+        shipping_receiver_address = #{shippingReceiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingReceiverZip != null" >
+        shipping_receiver_zip = #{shippingReceiverZip,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingCreateTime != null" >
+        shipping_create_time = #{shippingCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shippingUpdateTime != null" >
+        shipping_update_time = now(),
+      </if>
+    </set>
+    where shipping_id = #{shippingId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mall.pojo.Shipping" >
+    update mall_shipping
+    set shipping_user_id = #{shippingUserId,jdbcType=INTEGER},
+      shipping_receiver_name = #{shippingReceiverName,jdbcType=VARCHAR},
+      shipping_receiver_phone = #{shippingReceiverPhone,jdbcType=VARCHAR},
+      shipping_receiver_mobile = #{shippingReceiverMobile,jdbcType=VARCHAR},
+      shipping_receiver_province = #{shippingReceiverProvince,jdbcType=VARCHAR},
+      shipping_receiver_city = #{shippingReceiverCity,jdbcType=VARCHAR},
+      shipping_receiver_district = #{shippingReceiverDistrict,jdbcType=VARCHAR},
+      shipping_receiver_address = #{shippingReceiverAddress,jdbcType=VARCHAR},
+      shipping_receiver_zip = #{shippingReceiverZip,jdbcType=VARCHAR},
+      shipping_create_time = #{shippingCreateTime,jdbcType=TIMESTAMP},
+      shipping_update_time = now()
+    where shipping_id = #{shippingId,jdbcType=INTEGER}
+  </update>
+</mapper>
