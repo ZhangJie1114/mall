@@ -130,7 +130,7 @@
         #{orderCloseTime,jdbcType=TIMESTAMP},
       </if>
       <if test="orderCreateTime != null" >
-        now(),
+        #{orderCreateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="orderUpdateTime != null" >
         now(),

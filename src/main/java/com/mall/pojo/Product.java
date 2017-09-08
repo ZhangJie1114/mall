@@ -14,6 +14,10 @@ public class Product {
 
     private String productMainImage;
 
+    private String productSubImages;
+
+    private String productDetail;
+
     private BigDecimal productPrice;
 
     private Integer productStock;
@@ -24,12 +28,14 @@ public class Product {
 
     private Date productUpdateTime;
 
-    public Product(Integer productId, Integer productCategoryId, String productName, String productSubtitle, String productMainImage, BigDecimal productPrice, Integer productStock, Integer productStatus, Date productCreateTime, Date productUpdateTime) {
+    public Product(Integer productId, Integer productCategoryId, String productName, String productSubtitle, String productMainImage, String productSubImages, String productDetail, BigDecimal productPrice, Integer productStock, Integer productStatus, Date productCreateTime, Date productUpdateTime) {
         this.productId = productId;
         this.productCategoryId = productCategoryId;
         this.productName = productName;
         this.productSubtitle = productSubtitle;
         this.productMainImage = productMainImage;
+        this.productSubImages = productSubImages;
+        this.productDetail = productDetail;
         this.productPrice = productPrice;
         this.productStock = productStock;
         this.productStatus = productStatus;
@@ -79,6 +85,22 @@ public class Product {
 
     public void setProductMainImage(String productMainImage) {
         this.productMainImage = productMainImage == null ? null : productMainImage.trim();
+    }
+
+    public String getProductSubImages() {
+        return productSubImages;
+    }
+
+    public void setProductSubImages(String productSubImages) {
+        this.productSubImages = productSubImages == null ? null : productSubImages.trim();
+    }
+
+    public String getProductDetail() {
+        return productDetail;
+    }
+
+    public void setProductDetail(String productDetail) {
+        this.productDetail = productDetail == null ? null : productDetail.trim();
     }
 
     public BigDecimal getProductPrice() {

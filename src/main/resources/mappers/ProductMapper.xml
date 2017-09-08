@@ -8,41 +8,23 @@
       <arg column="product_name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="product_subtitle" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="product_main_image" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="product_sub_images" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="product_detail" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="product_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
       <arg column="product_stock" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="product_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="product_create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="product_update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-    </constructor>
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.mall.pojo.ProductWithBLOBs" >
-    <constructor >
-      <idArg column="product_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="product_category_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="product_name" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="product_subtitle" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="product_main_image" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="product_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
-      <arg column="product_stock" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="product_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="product_create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="product_update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="product_sub_images" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
-      <arg column="product_detail" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
     product_id, product_category_id, product_name, product_subtitle, product_main_image, 
-    product_price, product_stock, product_status, product_create_time, product_update_time
+    product_sub_images, product_detail, product_price, product_stock, product_status, 
+    product_create_time, product_update_time
   </sql>
-  <sql id="Blob_Column_List" >
-    product_sub_images, product_detail
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from mall_product
     where product_id = #{productId,jdbcType=INTEGER}
   </select>
@@ -50,18 +32,18 @@
     delete from mall_product
     where product_id = #{productId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.mall.pojo.ProductWithBLOBs" >
+  <insert id="insert" parameterType="com.mall.pojo.Product" >
     insert into mall_product (product_id, product_category_id, product_name, 
-      product_subtitle, product_main_image, product_price, 
-      product_stock, product_status, product_create_time, 
-      product_update_time, product_sub_images, 
-      product_detail)
+      product_subtitle, product_main_image, product_sub_images, 
+      product_detail, product_price, product_stock, 
+      product_status, product_create_time, product_update_time
+      )
     values (#{productId,jdbcType=INTEGER}, #{productCategoryId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, 
-      #{productSubtitle,jdbcType=VARCHAR}, #{productMainImage,jdbcType=VARCHAR}, #{productPrice,jdbcType=DECIMAL}, 
-      #{productStock,jdbcType=INTEGER}, #{productStatus,jdbcType=INTEGER}, now(), now(), #{productSubImages,jdbcType=LONGVARCHAR},
-      #{productDetail,jdbcType=LONGVARCHAR})
+      #{productSubtitle,jdbcType=VARCHAR}, #{productMainImage,jdbcType=VARCHAR}, #{productSubImages,jdbcType=VARCHAR}, 
+      #{productDetail,jdbcType=VARCHAR}, #{productPrice,jdbcType=DECIMAL}, #{productStock,jdbcType=INTEGER}, 
+      #{productStatus,jdbcType=INTEGER}, now(), now())
   </insert>
-  <insert id="insertSelective" parameterType="com.mall.pojo.ProductWithBLOBs" >
+  <insert id="insertSelective" parameterType="com.mall.pojo.Product" >
     insert into mall_product
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="productId != null" >
@@ -79,6 +61,12 @@
       <if test="productMainImage != null" >
         product_main_image,
       </if>
+      <if test="productSubImages != null" >
+        product_sub_images,
+      </if>
+      <if test="productDetail != null" >
+        product_detail,
+      </if>
       <if test="productPrice != null" >
         product_price,
       </if>
@@ -93,12 +81,6 @@
       </if>
       <if test="productUpdateTime != null" >
         product_update_time,
-      </if>
-      <if test="productSubImages != null" >
-        product_sub_images,
-      </if>
-      <if test="productDetail != null" >
-        product_detail,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -117,6 +99,12 @@
       <if test="productMainImage != null" >
         #{productMainImage,jdbcType=VARCHAR},
       </if>
+      <if test="productSubImages != null" >
+        #{productSubImages,jdbcType=VARCHAR},
+      </if>
+      <if test="productDetail != null" >
+        #{productDetail,jdbcType=VARCHAR},
+      </if>
       <if test="productPrice != null" >
         #{productPrice,jdbcType=DECIMAL},
       </if>
@@ -132,15 +120,9 @@
       <if test="productUpdateTime != null" >
         now(),
       </if>
-      <if test="productSubImages != null" >
-        #{productSubImages,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="productDetail != null" >
-        #{productDetail,jdbcType=LONGVARCHAR},
-      </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mall.pojo.ProductWithBLOBs" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.mall.pojo.Product" >
     update mall_product
     <set >
       <if test="productCategoryId != null" >
@@ -154,6 +136,12 @@
       </if>
       <if test="productMainImage != null" >
         product_main_image = #{productMainImage,jdbcType=VARCHAR},
+      </if>
+      <if test="productSubImages != null" >
+        product_sub_images = #{productSubImages,jdbcType=VARCHAR},
+      </if>
+      <if test="productDetail != null" >
+        product_detail = #{productDetail,jdbcType=VARCHAR},
       </if>
       <if test="productPrice != null" >
         product_price = #{productPrice,jdbcType=DECIMAL},
@@ -170,28 +158,7 @@
       <if test="productUpdateTime != null" >
         product_update_time = now(),
       </if>
-      <if test="productSubImages != null" >
-        product_sub_images = #{productSubImages,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="productDetail != null" >
-        product_detail = #{productDetail,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    where product_id = #{productId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mall.pojo.ProductWithBLOBs" >
-    update mall_product
-    set product_category_id = #{productCategoryId,jdbcType=INTEGER},
-      product_name = #{productName,jdbcType=VARCHAR},
-      product_subtitle = #{productSubtitle,jdbcType=VARCHAR},
-      product_main_image = #{productMainImage,jdbcType=VARCHAR},
-      product_price = #{productPrice,jdbcType=DECIMAL},
-      product_stock = #{productStock,jdbcType=INTEGER},
-      product_status = #{productStatus,jdbcType=INTEGER},
-      product_create_time = #{productCreateTime,jdbcType=TIMESTAMP},
-      product_update_time = now(),
-      product_sub_images = #{productSubImages,jdbcType=LONGVARCHAR},
-      product_detail = #{productDetail,jdbcType=LONGVARCHAR}
     where product_id = #{productId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.mall.pojo.Product" >
@@ -200,6 +167,8 @@
       product_name = #{productName,jdbcType=VARCHAR},
       product_subtitle = #{productSubtitle,jdbcType=VARCHAR},
       product_main_image = #{productMainImage,jdbcType=VARCHAR},
+      product_sub_images = #{productSubImages,jdbcType=VARCHAR},
+      product_detail = #{productDetail,jdbcType=VARCHAR},
       product_price = #{productPrice,jdbcType=DECIMAL},
       product_stock = #{productStock,jdbcType=INTEGER},
       product_status = #{productStatus,jdbcType=INTEGER},
