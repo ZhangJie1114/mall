@@ -1,11 +1,10 @@
 package com.mall.controller.backend;
 
-import com.mall.common.Coust;
+import com.mall.common.Const;
 import com.mall.common.ServerResponse;
 import com.mall.pojo.User;
 import com.mall.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,9 +28,9 @@ public class UserManageControlle {
         ServerResponse<User> response = iUserService.login(username,password);
         if(response.isSuccess()){
             User user = response.getData();
-            if(user.getUserRole() == Coust.Role.ROLE_ADMIN){
+            if(user.getUserRole() == Const.Role.ROLE_ADMIN){
                 //说明登录的是管理员
-                session.setAttribute(Coust.CURRENT_USER,user);
+                session.setAttribute(Const.CURRENT_USER,user);
                 return response;
             }else{
                 return ServerResponse.createByErrorMessage("不是管理员，无法登录");

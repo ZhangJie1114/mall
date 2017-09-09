@@ -3,7 +3,7 @@ package com.mall.common;
 /**
  * Created by root on 7/29/17.
  */
-public class Coust {
+public class Const {
     public static final String CURRENT_USER = "currentUser";
 
     public static final String EMAIL = "email";

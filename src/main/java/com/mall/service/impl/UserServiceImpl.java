@@ -1,7 +1,7 @@
 package com.mall.service.impl;
 
 
-import com.mall.common.Coust;
+import com.mall.common.Const;
 import com.mall.common.ServerResponse;
 import com.mall.common.TokenCache;
 import com.mall.dao.UserMapper;
@@ -11,7 +11,6 @@ import com.mall.util.MD5Util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.UUID;
 
@@ -19,7 +18,7 @@ import java.util.UUID;
  * Created by root on 7/29/17.
  */
 @Service("iUserService")
-public class UserServiceimpl implements IUserService {
+public class UserServiceImpl implements IUserService {
 
     @Autowired
     private UserMapper userMapper;
@@ -54,16 +53,16 @@ public class UserServiceimpl implements IUserService {
      * @return
      */
     public ServerResponse<String> register(User user){
-        ServerResponse validResponse = this.checkValid(user.getUserName(),Coust.USERNAME);
+        ServerResponse validResponse = this.checkValid(user.getUserName(), Const.USERNAME);
         if(!validResponse.isSuccess()){
             return validResponse;
         }
-        validResponse = this.checkValid(user.getUserEmail(),Coust.EMAIL);
+        validResponse = this.checkValid(user.getUserEmail(), Const.EMAIL);
         if(!validResponse.isSuccess()){
             return validResponse;
         }
 
-        user.setUserRole(Coust.Role.ROLE_CUSTOMER);
+        user.setUserRole(Const.Role.ROLE_CUSTOMER);
         //MD5加密
         user.setUserPassword(MD5Util.MD5EncodeUtf8(user.getUserPassword()));
 
@@ -84,13 +83,13 @@ public class UserServiceimpl implements IUserService {
     public ServerResponse<String> checkValid(String str,String type){
         if(org.apache.commons.lang3.StringUtils.isNoneEmpty(type)){
             //开始校验
-            if(Coust.USERNAME.equals(type)){
+            if(Const.USERNAME.equals(type)){
                 int resultCount = userMapper.checkUsername(str);
                 if(resultCount > 0){
                     return ServerResponse.createByErrorMessage("用户名已存在");
                 }
             }
-            if(Coust.EMAIL.equals(type)){
+            if(Const.EMAIL.equals(type)){
                 int resultCount = userMapper.checkEmail(str);
                 if(resultCount > 0){
                     return ServerResponse.createByErrorMessage("邮箱已存在");
@@ -108,7 +107,7 @@ public class UserServiceimpl implements IUserService {
      * @return
      */
     public ServerResponse selectQuestion(String username){
-        ServerResponse validResponse = this.checkValid(username,Coust.USERNAME);
+        ServerResponse validResponse = this.checkValid(username, Const.USERNAME);
         if(validResponse.isSuccess()){
             return ServerResponse.createByErrorMessage("用户名不存在");
         }
@@ -149,7 +148,7 @@ public class UserServiceimpl implements IUserService {
             return ServerResponse.createByErrorMessage("参数错误，token需要传递");
         }
 
-        ServerResponse validResponse = this.checkValid(username,Coust.USERNAME);
+        ServerResponse validResponse = this.checkValid(username, Const.USERNAME);
         if(validResponse.isSuccess()){
             return ServerResponse.createByErrorMessage("用户名不存在");
         }
@@ -240,12 +239,13 @@ public class UserServiceimpl implements IUserService {
      * @param user
      * @return
      *
+     */
     public ServerResponse checkAdminRole(User user){
-        if(user != null && user.getRole().intValue() == Const.Role.ROLE_ADMIN){
+        if(user != null && user.getUserRole().intValue() == Const.Role.ROLE_ADMIN){
             return ServerResponse.createBySuccess();
         }
         return ServerResponse.createByError();
-    }*/
+    }
 }
 
 
