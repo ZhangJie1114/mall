@@ -19,7 +19,7 @@ import java.util.Set;
 /**
  * Created by root on 9/8/17.
  */
-@Service
+@Service("ICategoryService")
 public class CategoryServiceImpl implements ICategoryService {
 
     private Logger logger = LoggerFactory.getLogger(CategoryServiceImpl.class);
