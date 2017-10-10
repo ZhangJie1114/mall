@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -50,7 +51,9 @@ public class ProductServiceImpl implements IProductService{
                 }
             }
             if(product.getProductId() != null){
-                int rowCount = productMapper.updateByPrimaryKey(product);
+                //使用选择性更新updateByPrimaryKeySelective,前端默认没有传入更新时间，需设置
+                product.setProductUpdateTime(new Date());
+                int rowCount = productMapper.updateByPrimaryKeySelective(product);
                 if(rowCount > 0){
                     return ServerResponse.createBySuccessMessage("更新产品成功");
                 }
@@ -212,10 +215,12 @@ public class ProductServiceImpl implements IProductService{
         }
 
         PageHelper.startPage(pageNum, pageSize);
+
         //排序处理
         if(StringUtils.isNotBlank(orderBy)){
             if(Const.ProductListOrderBy.PRICE_ASC_DESC.contains(orderBy)){
-                String[] orderByArray = orderBy.split("_");
+                //以转义字符 | 号分割字符串，
+                String[] orderByArray = orderBy.split("\\|");
                 PageHelper.orderBy(orderByArray[0] + " " + orderByArray[1]);
             }
         }

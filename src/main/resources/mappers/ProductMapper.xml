@@ -201,7 +201,7 @@
       AND product_name LIKE #{productName}
     </if>
     <if test = "categoryIdList != null">
-      AND category_id IN
+      AND product_category_id IN
       <foreach item = "item" index = "index" open = "(" separator = "," close = ")" collection = "categoryIdList">
         #{item}
       </foreach>
