@@ -18,7 +18,7 @@ import java.util.UUID;
  * Created by root on 7/29/17.
  */
 @Service("iUserService")
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl implements IUserService{
 
     @Autowired
     private UserMapper userMapper;
@@ -30,7 +30,7 @@ public class UserServiceImpl implements IUserService {
      * @return
      */
     @Override
-    public ServerResponse<User> login(String username, String password) {
+    public ServerResponse<User> login(String username, String password){
         int resultCount = userMapper.checkUsername(username);
         if(resultCount == 0){
             return ServerResponse.createByErrorMessage("用户名不存在");
