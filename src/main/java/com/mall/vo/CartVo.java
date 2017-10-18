@@ -8,41 +8,42 @@ import java.util.List;
  */
 public class CartVo {
 
-    private List<CartProductVo> cartProductVoList;
-    private BigDecimal cartTotalPrice;
-    private Boolean allChecked;//是否已经都勾选
-    private String imageHost;
+    private List<CartProductVo> VoCartProductVoList;
+    private BigDecimal VoCartTotalPrice;
+    private Boolean VoAllChecked;//是否已经都勾选
+    private String VoImageHost;
 
-    public List<CartProductVo> getCartProductVoList() {
-        return cartProductVoList;
+    public List<CartProductVo> getVoCartProductVoList() {
+        return VoCartProductVoList;
     }
 
-    public void setCartProductVoList(List<CartProductVo> cartProductVoList) {
-        this.cartProductVoList = cartProductVoList;
+    public void setVoCartProductVoList(List<CartProductVo> voCartProductVoList) {
+        VoCartProductVoList = voCartProductVoList;
     }
 
-    public BigDecimal getCartTotalPrice() {
-        return cartTotalPrice;
+    public BigDecimal getVoCartTotalPrice() {
+        return VoCartTotalPrice;
     }
 
-    public void setCartTotalPrice(BigDecimal cartTotalPrice) {
-        this.cartTotalPrice = cartTotalPrice;
+    public void setVoCartTotalPrice(BigDecimal voCartTotalPrice) {
+        VoCartTotalPrice = voCartTotalPrice;
     }
 
-    public Boolean getAllChecked() {
-        return allChecked;
+    public Boolean getVoAllChecked() {
+        return VoAllChecked;
     }
 
-    public void setAllChecked(Boolean allChecked) {
-        this.allChecked = allChecked;
+    public void setVoAllChecked(Boolean voAllChecked) {
+        VoAllChecked = voAllChecked;
     }
 
-    public String getImageHost() {
-        return imageHost;
+    public String getVoImageHost() {
+        return VoImageHost;
     }
 
-    public void setImageHost(String imageHost) {
-        this.imageHost = imageHost;
+    public void setVoImageHost(String voImageHost) {
+        VoImageHost = voImageHost;
     }
+
 }
 

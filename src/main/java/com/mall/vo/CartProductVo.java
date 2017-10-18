@@ -9,122 +9,123 @@ public class CartProductVo {
 
 //结合了产品和购物车的一个抽象对象
 
-    private Integer id;
-    private Integer userId;
-    private Integer productId;
-    private Integer quantity;//购物车中此商品的数量
-    private String productName;
-    private String productSubtitle;
-    private String productMainImage;
-    private BigDecimal productPrice;
-    private Integer productStatus;
-    private BigDecimal productTotalPrice;
-    private Integer productStock;
-    private Integer productChecked;//此商品是否勾选
+    private Integer VoId;
+    private Integer VoUserId;
+    private Integer VoProductId;
+    private Integer VoQuantity;//购物车中此商品的数量
+    private String VoProductName;
+    private String VoProductSubtitle;
+    private String VoProductMainImage;
+    private BigDecimal VoProductPrice;
+    private Integer VoProductStatus;
+    private BigDecimal VoProductTotalPrice;
+    private Integer VoProductStock;
+    private Integer VoProductChecked;//此商品是否勾选
 
-    private String limitQuantity;//限制数量的一个返回结果
+    private String VoLimitQuantity;//限制数量的一个返回结果
 
-    public Integer getId() {
-        return id;
+    public Integer getVoId() {
+        return VoId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setVoId(Integer voId) {
+        VoId = voId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getVoUserId() {
+        return VoUserId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setVoUserId(Integer voUserId) {
+        VoUserId = voUserId;
     }
 
-    public Integer getProductId() {
-        return productId;
+    public Integer getVoProductId() {
+        return VoProductId;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setVoProductId(Integer voProductId) {
+        VoProductId = voProductId;
     }
 
-    public Integer getQuantity() {
-        return quantity;
+    public Integer getVoQuantity() {
+        return VoQuantity;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setVoQuantity(Integer voQuantity) {
+        VoQuantity = voQuantity;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getVoProductName() {
+        return VoProductName;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setVoProductName(String voProductName) {
+        VoProductName = voProductName;
     }
 
-    public String getProductSubtitle() {
-        return productSubtitle;
+    public String getVoProductSubtitle() {
+        return VoProductSubtitle;
     }
 
-    public void setProductSubtitle(String productSubtitle) {
-        this.productSubtitle = productSubtitle;
+    public void setVoProductSubtitle(String voProductSubtitle) {
+        VoProductSubtitle = voProductSubtitle;
     }
 
-    public String getProductMainImage() {
-        return productMainImage;
+    public String getVoProductMainImage() {
+        return VoProductMainImage;
     }
 
-    public void setProductMainImage(String productMainImage) {
-        this.productMainImage = productMainImage;
+    public void setVoProductMainImage(String voProductMainImage) {
+        VoProductMainImage = voProductMainImage;
     }
 
-    public BigDecimal getProductPrice() {
-        return productPrice;
+    public BigDecimal getVoProductPrice() {
+        return VoProductPrice;
     }
 
-    public void setProductPrice(BigDecimal productPrice) {
-        this.productPrice = productPrice;
+    public void setVoProductPrice(BigDecimal voProductPrice) {
+        VoProductPrice = voProductPrice;
     }
 
-    public Integer getProductStatus() {
-        return productStatus;
+    public Integer getVoProductStatus() {
+        return VoProductStatus;
     }
 
-    public void setProductStatus(Integer productStatus) {
-        this.productStatus = productStatus;
+    public void setVoProductStatus(Integer voProductStatus) {
+        VoProductStatus = voProductStatus;
     }
 
-    public BigDecimal getProductTotalPrice() {
-        return productTotalPrice;
+    public BigDecimal getVoProductTotalPrice() {
+        return VoProductTotalPrice;
     }
 
-    public void setProductTotalPrice(BigDecimal productTotalPrice) {
-        this.productTotalPrice = productTotalPrice;
+    public void setVoProductTotalPrice(BigDecimal voProductTotalPrice) {
+        VoProductTotalPrice = voProductTotalPrice;
     }
 
-    public Integer getProductStock() {
-        return productStock;
+    public Integer getVoProductStock() {
+        return VoProductStock;
     }
 
-    public void setProductStock(Integer productStock) {
-        this.productStock = productStock;
+    public void setVoProductStock(Integer voProductStock) {
+        VoProductStock = voProductStock;
     }
 
-    public Integer getProductChecked() {
-        return productChecked;
+    public Integer getVoProductChecked() {
+        return VoProductChecked;
     }
 
-    public void setProductChecked(Integer productChecked) {
-        this.productChecked = productChecked;
+    public void setVoProductChecked(Integer voProductChecked) {
+        VoProductChecked = voProductChecked;
     }
 
-    public String getLimitQuantity() {
-        return limitQuantity;
+    public String getVoLimitQuantity() {
+        return VoLimitQuantity;
     }
 
-    public void setLimitQuantity(String limitQuantity) {
-        this.limitQuantity = limitQuantity;
+    public void setVoLimitQuantity(String voLimitQuantity) {
+        VoLimitQuantity = voLimitQuantity;
     }
+
 }

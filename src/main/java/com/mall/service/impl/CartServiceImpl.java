@@ -104,51 +104,51 @@ public class CartServiceImpl implements ICartService{
         if(CollectionUtils.isNotEmpty(cartList)){
             for(Cart cartItem : cartList){
                 CartProductVo cartProductVo = new CartProductVo();
-                cartProductVo.setId(cartItem.getCartId());
-                cartProductVo.setUserId(userId);
-                cartProductVo.setProductId(cartItem.getCartProductId());
+                cartProductVo.setVoId(cartItem.getCartId());
+                cartProductVo.setVoUserId(userId);
+                cartProductVo.setVoProductId(cartItem.getCartProductId());
 
                 Product product = productMapper.selectByPrimaryKey(cartItem.getCartProductId());
                 if(product != null){
-                    cartProductVo.setProductMainImage(product.getProductMainImage());
-                    cartProductVo.setProductName(product.getProductName());
-                    cartProductVo.setProductSubtitle(product.getProductSubtitle());
-                    cartProductVo.setProductStatus(product.getProductStatus());
-                    cartProductVo.setProductPrice(product.getProductPrice());
-                    cartProductVo.setProductStock(product.getProductStock());
+                    cartProductVo.setVoProductMainImage(product.getProductMainImage());
+                    cartProductVo.setVoProductName(product.getProductName());
+                    cartProductVo.setVoProductSubtitle(product.getProductSubtitle());
+                    cartProductVo.setVoProductStatus(product.getProductStatus());
+                    cartProductVo.setVoProductPrice(product.getProductPrice());
+                    cartProductVo.setVoProductStock(product.getProductStock());
 
                     //判断产品库存
                     int buyLimitCount = 0;
                     if(product.getProductStock() >= cartItem.getCartQuantity()){
                         //库存充足的时候
                         buyLimitCount = cartItem.getCartQuantity();
-                        cartProductVo.setLimitQuantity(Const.Cart.LIMIT_NUM_SUCCESS);
+                        cartProductVo.setVoLimitQuantity(Const.Cart.LIMIT_NUM_SUCCESS);
                     }else{
                         buyLimitCount = product.getProductStock();
-                        cartProductVo.setLimitQuantity(Const.Cart.LIMIT_NUM_FAIL);
+                        cartProductVo.setVoLimitQuantity(Const.Cart.LIMIT_NUM_FAIL);
                         //购物车中更新有效产品库存
                         Cart cartForQuantity = new Cart();
                         cartForQuantity.setCartId(cartItem.getCartId());
                         cartForQuantity.setCartQuantity(buyLimitCount);
                         cartMapper.updateByPrimaryKeySelective(cartForQuantity);
                     }
-                    cartProductVo.setQuantity(buyLimitCount);
+                    cartProductVo.setVoQuantity(buyLimitCount);
                     //计算总价格
-                    cartProductVo.setProductTotalPrice(BigDecimalUtil.mul(product.getProductPrice().doubleValue(), cartProductVo.getQuantity()));
-                    cartProductVo.setProductChecked(cartItem.getCartChecked());
+                    cartProductVo.setVoProductTotalPrice(BigDecimalUtil.mul(product.getProductPrice().doubleValue(), cartProductVo.getVoQuantity()));
+                    cartProductVo.setVoProductChecked(cartItem.getCartChecked());
                 }
                 if(cartItem.getCartChecked() == Const.Cart.CHECKED){
                     //如果已经勾选，那么增加到整个购物车的总价格中
-                    cartTotalPrice = BigDecimalUtil.add(cartTotalPrice.doubleValue(), cartProductVo.getProductTotalPrice().doubleValue());
+                    cartTotalPrice = BigDecimalUtil.add(cartTotalPrice.doubleValue(), cartProductVo.getVoProductTotalPrice().doubleValue());
                 }
                 cartProductVosList.add(cartProductVo);
             }
 
         }
-        cartVo.setCartTotalPrice(cartTotalPrice);
-        cartVo.setCartProductVoList(cartProductVosList);
-        cartVo.setAllChecked(this.getAllCheckedStatus(userId));
-        cartVo.setImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix"));
+        cartVo.setVoCartTotalPrice(cartTotalPrice);
+        cartVo.setVoCartProductVoList(cartProductVosList);
+        cartVo.setVoAllChecked(this.getAllCheckedStatus(userId));
+        cartVo.setVoImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix"));
         return cartVo;
     }
 

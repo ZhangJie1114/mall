@@ -3,7 +3,7 @@ package com.mall.common;
 /**
  * Created by root on 7/29/17.
  */
-public enum  ResponseCode {
+public enum ResponseCode {
     SUCCESS(0,"SUCCESS"),
     ERROR(1,"ERROR"),
     ILLEGAL_ARGUMENT(2,"ILLEGAL_ARGUMENT"),

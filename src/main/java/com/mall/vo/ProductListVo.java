@@ -6,6 +6,7 @@ import java.math.BigDecimal;
  * Created by root on 9/11/17.
  */
 public class ProductListVo {
+
     private Integer VoId;
     private Integer VoCategoryId;
     private String VoName;
