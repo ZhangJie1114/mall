@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -55,7 +56,8 @@ public class CategoryServiceImpl implements ICategoryService {
         Category category = new Category();
         category.setCategoryId(categoryId);
         category.setCategoryName(categoryName);
-
+        //使用选择性更新updateByPrimaryKeySelective,前端默认没有传入更新时间，需设置
+        category.setCategoryUpdateTime(new Date());
         int rowCount = categoryMapper.updateByPrimaryKeySelective(category);
         if(rowCount > 0){
             return ServerResponse.createBySuccessMessage("更新品类名称成功");

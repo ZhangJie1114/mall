@@ -30,14 +30,12 @@ public class ShippingServiceImpl implements IShippingService{
             //映射Map接口的 V put(K key, V value) 方法；K键的类型，V值的类型；如果键不存在，就返回null；否则返回之前与键关联的值。
             Map result = Maps.newHashMap();
             result.put("shippingId", shipping.getShippingId());
-            System.out.println(result.get("shippingId"));
-            System.out.println(result);
             return ServerResponse.createBySuccess("新建收货地址成功", result);
         }
         return ServerResponse.createByErrorMessage("新建收货地址失败");
     }
 
-    public ServerResponse<String> del(Integer userId, Integer shippingId){
+    public ServerResponse<String> delete(Integer userId, Integer shippingId){
         int resultCount = shippingMapper.deleteByPrimaryKey(shippingId);
         if(resultCount > 0){
             return ServerResponse.createBySuccess("删除收货地址成功");

@@ -108,13 +108,13 @@ public class ProductServiceImpl implements IProductService{
         productDetailVo.setVoStatus(product.getProductStatus());
         productDetailVo.setVoStock(product.getProductStock());
 
-        productDetailVo.setVoImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix","http://img.happymmall.com/"));
+        productDetailVo.setVoImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix","http://img.jasbon.store/"));
 
         Category category = categoryMapper.selectByPrimaryKey(product.getProductCategoryId());
         if(category == null){
             productDetailVo.setVoParentCategoryId(0); // 默认根节点
         }else{
-            productDetailVo.setVoParentCategoryId(category.getCategoryId());
+            productDetailVo.setVoParentCategoryId(category.getCategoryParentId());
         }
 
         productDetailVo.setVoCreateTime(DateTimeUtil.dateToStr(product.getProductCreateTime()));
@@ -151,7 +151,7 @@ public class ProductServiceImpl implements IProductService{
         productListVo.setVoPrice(product.getProductPrice());
         productListVo.setVoStatus(product.getProductStatus());
 
-        productListVo.setVoImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix","http://img.happymmall.com/"));
+        productListVo.setVoImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix","http://img.jasbon.store/"));
 
         return productListVo;
     }
@@ -220,7 +220,7 @@ public class ProductServiceImpl implements IProductService{
         if(StringUtils.isNotBlank(orderBy)){
             if(Const.ProductListOrderBy.PRICE_ASC_DESC.contains(orderBy)){
                 //以转义字符 | 号分割字符串，
-                String[] orderByArray = orderBy.split("\\|");
+                String[] orderByArray = orderBy.split("-");
                 PageHelper.orderBy(orderByArray[0] + " " + orderByArray[1]);
             }
         }

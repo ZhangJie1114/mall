@@ -28,7 +28,7 @@ public class CategoryManageController {
     @Autowired
     private ICategoryService iCategoryService;
 
-    @RequestMapping(value = "add_category.do", method = RequestMethod.GET)
+    @RequestMapping(value = "add_category.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse addCategory(HttpSession session, String categoryName, @RequestParam(value = "parentId", defaultValue = "0")int parentId){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -44,7 +44,7 @@ public class CategoryManageController {
             return ServerResponse.createByErrorMessage("登录的用户没有权限，需要管理员权限");
         }
     }
-    @RequestMapping(value = "set_category_name.do", method = RequestMethod.GET)
+    @RequestMapping(value = "set_category_name.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse setCategoryName(HttpSession session, Integer categoryId, String categoryName){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -61,7 +61,7 @@ public class CategoryManageController {
         }
     }
 
-    @RequestMapping(value = "get_children_parallel_category.do", method = RequestMethod.GET)
+    @RequestMapping(value = "get_children_parallel_category.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse getChildrenParallelCategory(HttpSession session, @RequestParam(value = "categoryId", defaultValue = "0") Integer categoryId){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -78,7 +78,7 @@ public class CategoryManageController {
         }
     }
 
-    @RequestMapping(value = "get_category_and_deep_children_category.do", method = RequestMethod.GET)
+    @RequestMapping(value = "get_category_and_deep_children_category.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse getCategoryAndDeepChildrenCategory(HttpSession session, @RequestParam(value = "categoryId", defaultValue = "0") Integer categoryId){
         User user = (User)session.getAttribute(Const.CURRENT_USER);

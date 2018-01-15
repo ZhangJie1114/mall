@@ -40,7 +40,7 @@ public class ProductManageController {
     @Autowired
     private IFileService iFileService;
 
-    @RequestMapping(value = "save.do", method = RequestMethod.GET)
+    @RequestMapping(value = "save.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse productSave(HttpSession session, Product product){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -57,7 +57,7 @@ public class ProductManageController {
         }
     }
 
-    @RequestMapping(value = "set_sale_status.do", method = RequestMethod.GET)
+    @RequestMapping(value = "set_sale_status.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse setSaleStatus(HttpSession session, Integer productId, Integer status){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -74,7 +74,7 @@ public class ProductManageController {
         }
     }
 
-    @RequestMapping(value = "detail.do", method = RequestMethod.GET)
+    @RequestMapping(value = "detail.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse manageProductDetail(HttpSession session, Integer productId){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -91,7 +91,7 @@ public class ProductManageController {
         }
     }
 
-    @RequestMapping(value = "list.do", method = RequestMethod.GET)
+    @RequestMapping(value = "list.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse manageProductList(HttpSession session, @RequestParam(value = "pageNum", defaultValue = "1") int pageNum, @RequestParam(value = "pageSize", defaultValue = "10") int pageSize){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -108,7 +108,7 @@ public class ProductManageController {
         }
     }
 
-    @RequestMapping(value = "search.do", method = RequestMethod.GET)
+    @RequestMapping(value = "search.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse manageProductSearch(HttpSession session, String productName, Integer productId, @RequestParam(value = "pageNum", defaultValue = "1") int pageNum, @RequestParam(value = "pageSize", defaultValue = "10") int pageSize){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -125,7 +125,7 @@ public class ProductManageController {
         }
     }
 
-    @RequestMapping(value = "upload.do")
+    @RequestMapping(value = "upload.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse manageProductUpload(HttpSession session, @RequestParam(value = "upload_file",required = false) MultipartFile file, HttpServletRequest request){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -150,7 +150,7 @@ public class ProductManageController {
         }
     }
 
-    @RequestMapping(value = "richtext_img_upload.do")
+    @RequestMapping(value = "richtext_img_upload.do", method = RequestMethod.POST)
     @ResponseBody
     public Map manageProductRichtextImgUpload(HttpSession session, @RequestParam(value = "upload_file", required = false) MultipartFile file, HttpServletRequest request, HttpServletResponse response){
         Map resultMap = Maps.newHashMap();
@@ -180,7 +180,7 @@ public class ProductManageController {
             String url = PropertiesUtil.getProperty("ftp.server.http.prefix") + targetFileName;
             resultMap.put("success", true);
             resultMap.put("mgs", "上传成功");
-            resultMap.put("file_url", url);
+            resultMap.put("file_path", url);
             response.addHeader("Access-Control-Allow-Headers", "X-File-Name");
             return resultMap;
         }else{

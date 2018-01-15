@@ -24,7 +24,7 @@ public class CartController {
     @Autowired
     private ICartService iCartService;
 
-    @RequestMapping(value = "add.do", method = RequestMethod.GET)
+    @RequestMapping(value = "add.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<CartVo> add(HttpSession session, Integer count, Integer productId){
         User user =(User)session.getAttribute(Const.CURRENT_USER);
@@ -35,7 +35,7 @@ public class CartController {
         return iCartService.add(user.getUserId(), productId, count);
     }
 
-    @RequestMapping(value = "update.do", method = RequestMethod.GET)
+    @RequestMapping(value = "update.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<CartVo> update(HttpSession session, Integer count, Integer productId){
         User user =(User)session.getAttribute(Const.CURRENT_USER);
@@ -46,7 +46,7 @@ public class CartController {
         return iCartService.update(user.getUserId(), productId, count);
     }
 
-    @RequestMapping(value = "delete_product.do", method = RequestMethod.GET)
+    @RequestMapping(value = "delete_product.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<CartVo> deleteProduct(HttpSession session, String productIds){
         User user =(User)session.getAttribute(Const.CURRENT_USER);
@@ -57,7 +57,7 @@ public class CartController {
         return iCartService.deleteProduct(user.getUserId(), productIds);
     }
 
-    @RequestMapping(value = "list.do", method = RequestMethod.GET)
+    @RequestMapping(value = "list.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<CartVo> list(HttpSession session){
         User user =(User)session.getAttribute(Const.CURRENT_USER);
@@ -69,7 +69,7 @@ public class CartController {
     }
 
     //全选
-    @RequestMapping(value = "select_all.do", method = RequestMethod.GET)
+    @RequestMapping(value = "select_all.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<CartVo> selectAll(HttpSession session){
         User user =(User)session.getAttribute(Const.CURRENT_USER);
@@ -81,7 +81,7 @@ public class CartController {
     }
 
     //全反选
-    @RequestMapping(value = "un_select_all.do", method = RequestMethod.GET)
+    @RequestMapping(value = "un_select_all.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<CartVo> UnSelectAll(HttpSession session){
         User user =(User)session.getAttribute(Const.CURRENT_USER);
@@ -93,7 +93,7 @@ public class CartController {
     }
 
     //单选
-    @RequestMapping(value = "select.do", method = RequestMethod.GET)
+    @RequestMapping(value = "select.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<CartVo> Select(HttpSession session, Integer productId){
         User user =(User)session.getAttribute(Const.CURRENT_USER);
@@ -105,7 +105,7 @@ public class CartController {
     }
 
     //单反选
-    @RequestMapping(value = "un_select.do", method = RequestMethod.GET)
+    @RequestMapping(value = "un_select.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<CartVo> UnSelect(HttpSession session, Integer productId){
         User user =(User)session.getAttribute(Const.CURRENT_USER);
@@ -120,7 +120,7 @@ public class CartController {
     }
 
     //查询当前的购物车里面的产品数量，如果一个产品有10个，那么数量就是10。
-    @RequestMapping(value = "get_cart_product_count.do", method = RequestMethod.GET)
+    @RequestMapping(value = "get_cart_product_count.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<Integer> getCartProductCount(HttpSession session){
         User user =(User)session.getAttribute(Const.CURRENT_USER);

@@ -36,7 +36,7 @@ public class OrderController {
     @Autowired
     private IOrderService iOrderService;
 
-    @RequestMapping(value = "create.do", method = RequestMethod.GET)
+    @RequestMapping(value = "create.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse create(HttpSession session, Integer shippingId){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -46,17 +46,17 @@ public class OrderController {
         return iOrderService.createOrder(user.getUserId(), shippingId);
     }
 
-    @RequestMapping(value = "cancle.do", method = RequestMethod.GET)
+    @RequestMapping(value = "cancel.do", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse cancle(HttpSession session, Long orderNo){
+    public ServerResponse cancel(HttpSession session, Long orderNo){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
         if(user == null){
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
         }
-        return iOrderService.cancleOrder(user.getUserId(), orderNo);
+        return iOrderService.cancelOrder(user.getUserId(), orderNo);
     }
 
-    @RequestMapping(value = "get_order_cart_product.do", method = RequestMethod.GET)
+    @RequestMapping(value = "get_order_cart_product.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse getOrderCartProduct(HttpSession session){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -66,7 +66,7 @@ public class OrderController {
         return iOrderService.getOrderCartProduct(user.getUserId());
     }
 
-    @RequestMapping(value = "get_order_detail.do", method = RequestMethod.GET)
+    @RequestMapping(value = "get_order_detail.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse getOrderDetail(HttpSession session, Long orderNo){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -76,7 +76,7 @@ public class OrderController {
         return iOrderService.getOrderDetail(user.getUserId(), orderNo);
     }
 
-    @RequestMapping(value = "get_order_list.do", method = RequestMethod.GET)
+    @RequestMapping(value = "get_order_list.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse getOrderList(HttpSession session,
                                        @RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
@@ -88,7 +88,7 @@ public class OrderController {
         return iOrderService.getOrderList(user.getUserId(), pageNum, pageSize);
     }
 
-    @RequestMapping(value = "pay.do", method = RequestMethod.GET)
+    @RequestMapping(value = "pay.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse pay(HttpSession session, Long orderNo, HttpServletRequest request){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -155,7 +155,7 @@ public class OrderController {
         return Const.AlipayCallback.RESPONSE_FAILED;
     }
 
-    @RequestMapping(value = "query_order_pay_status.do", method = RequestMethod.GET)
+    @RequestMapping(value = "query_order_pay_status.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<Boolean> queryOrderPayStatus(HttpSession session, Long orderNo){
         User user = (User)session.getAttribute(Const.CURRENT_USER);

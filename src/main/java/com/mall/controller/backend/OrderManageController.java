@@ -30,7 +30,7 @@ public class OrderManageController {
     @Autowired
     private IOrderService iOrderService;
 
-    @RequestMapping(value = "list.do", method = RequestMethod.GET)
+    @RequestMapping(value = "list.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<PageInfo> manageOrderList(HttpSession session,
                                               @RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
@@ -49,7 +49,7 @@ public class OrderManageController {
         }
     }
 
-    @RequestMapping(value = "detail.do", method = RequestMethod.GET)
+    @RequestMapping(value = "detail.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<OrderVo> manageOrderDetail(HttpSession session, Long orderNo){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -66,9 +66,9 @@ public class OrderManageController {
         }
     }
 
-    @RequestMapping(value = "seach.do", method = RequestMethod.GET)
+    @RequestMapping(value = "search.do", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse<PageInfo> manageOrderSeach(HttpSession session, Long orderNo,
+    public ServerResponse<PageInfo> manageOrderSearch(HttpSession session, Long orderNo,
                                                     @RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
                                                     @RequestParam(value = "pageSize", defaultValue = "10") int pageSize){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -79,13 +79,13 @@ public class OrderManageController {
         if(iUserService.checkAdminRole(user).isSuccess()){
             //是管理员
             //添加业务逻辑
-            return iOrderService.manageOrderSeach(orderNo, pageNum, pageSize);
+            return iOrderService.manageOrderSearch(orderNo, pageNum, pageSize);
         }else{
             return ServerResponse.createByErrorMessage("登录的用户没有权限，需要管理员权限");
         }
     }
 
-    @RequestMapping(value = "send_goods.do", method = RequestMethod.GET)
+    @RequestMapping(value = "send_goods.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<String> manageOrderSendGoods(HttpSession session, Long orderNo){
         User user = (User)session.getAttribute(Const.CURRENT_USER);

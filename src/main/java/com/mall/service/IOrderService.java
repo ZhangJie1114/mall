@@ -20,7 +20,7 @@ public interface IOrderService {
 
     ServerResponse createOrder(Integer userId, Integer shippingId);
 
-    ServerResponse cancleOrder(Integer userId, Long orderNo);
+    ServerResponse cancelOrder(Integer userId, Long orderNo);
 
     ServerResponse getOrderCartProduct(Integer userId);
 
@@ -34,7 +34,7 @@ public interface IOrderService {
 
     ServerResponse<OrderVo> manageOrderDetail(Long orderNo);
 
-    ServerResponse<PageInfo> manageOrderSeach(Long orderNo, int pageNum, int pageSize);
+    ServerResponse<PageInfo> manageOrderSearch(Long orderNo, int pageNum, int pageSize);
 
     ServerResponse<String> manageOrderSendGoods(Long orderNo);
 

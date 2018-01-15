@@ -26,7 +26,7 @@ public class ShippingController {
     @Autowired
     private IShippingService iShippingService;
 
-    @RequestMapping(value = "add.do", method = RequestMethod.GET)
+    @RequestMapping(value = "add.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse add(HttpSession session, Shipping shipping){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -36,17 +36,17 @@ public class ShippingController {
         return iShippingService.add(user.getUserId(), shipping);
     }
 
-    @RequestMapping(value = "del.do", method = RequestMethod.GET)
+    @RequestMapping(value = "delete.do", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse del(HttpSession session, Integer shippingId){
+    public ServerResponse delete(HttpSession session, Integer shippingId){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
         if(user == null){
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
         }
-        return iShippingService.del(user.getUserId(), shippingId);
+        return iShippingService.delete(user.getUserId(), shippingId);
     }
 
-    @RequestMapping(value = "update.do", method = RequestMethod.GET)
+    @RequestMapping(value = "update.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse update(HttpSession session, Shipping shipping){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -56,7 +56,7 @@ public class ShippingController {
         return iShippingService.update(user.getUserId(), shipping);
     }
 
-    @RequestMapping(value = "select.do", method = RequestMethod.GET)
+    @RequestMapping(value = "select.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<Shipping> select(HttpSession session, Integer shippingId){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
@@ -66,7 +66,7 @@ public class ShippingController {
         return iShippingService.select(user.getUserId(), shippingId);
     }
 
-    @RequestMapping(value = "list.do", method = RequestMethod.GET)
+    @RequestMapping(value = "list.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<PageInfo> list(HttpSession session,
                                          @RequestParam(value = "pageNum", defaultValue = "1") int pageNum,

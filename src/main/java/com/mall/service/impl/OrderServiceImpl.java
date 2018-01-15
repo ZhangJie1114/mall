@@ -295,7 +295,7 @@ public class OrderServiceImpl implements IOrderService {
 
         // (必填) 订单标题，粗略描述用户的支付目的。如“xxx品牌xxx门店当面付扫码消费”
         //String subject = "xxx品牌xxx门店当面付扫码消费";
-        String subject = new StringBuilder().append("mall网上商城当面付扫码消费,订单号：").append(outTradeNo).toString();
+        String subject = new StringBuilder().append("嘉士邦商城当面付扫码消费,订单号：").append(outTradeNo).toString();
 
         // (必填) 订单总金额，单位为元，不能超过1亿元
         // 如果同时传入了【打折金额】,【不可打折金额】,【订单总金额】三者,则必须满足如下条件:【订单总金额】=【打折金额】+【不可打折金额】
@@ -312,7 +312,7 @@ public class OrderServiceImpl implements IOrderService {
 
         // 订单描述，可以对交易或商品进行一个详细地描述，比如填写"购买商品2件共15.00元"
         //String body = "购买商品3件共20.00元";
-        String body = new StringBuilder().append("mall网订单号").append(outTradeNo).append("购买商品共消费").append(totalAmount).append("元").toString();
+        String body = new StringBuilder().append("嘉士邦商城订单号").append(outTradeNo).append("购买商品共消费").append(totalAmount).append("元").toString();
 
         // 商户操作员编号，添加此参数可以为商户操作员做销售统计
         String operatorId = "test_operator_id";
@@ -476,7 +476,7 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     //取消未付款订单
-    public ServerResponse<String> cancleOrder(Integer userId, Long orderNo){
+    public ServerResponse<String> cancelOrder(Integer userId, Long orderNo){
         Order order = orderMapper.selectByUserIdAndOrderNo(userId, orderNo);
         if(order == null){
             return ServerResponse.createByErrorMessage("订单不存在");
@@ -586,7 +586,7 @@ public class OrderServiceImpl implements IOrderService {
         return ServerResponse.createByErrorMessage("订单不存在");
     }
 
-    public ServerResponse<PageInfo> manageOrderSeach(Long orderNo, int pageNum, int PageSize){
+    public ServerResponse<PageInfo> manageOrderSearch(Long orderNo, int pageNum, int PageSize){
         PageHelper.startPage(pageNum, PageSize);
 
         Order order = orderMapper.selectByOrderNo(orderNo);
