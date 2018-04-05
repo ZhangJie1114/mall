@@ -44,7 +44,7 @@
       #{shippingReceiverPhone,jdbcType=VARCHAR}, #{shippingReceiverMobile,jdbcType=VARCHAR}, 
       #{shippingReceiverProvince,jdbcType=VARCHAR}, #{shippingReceiverCity,jdbcType=VARCHAR}, 
       #{shippingReceiverDistrict,jdbcType=VARCHAR}, #{shippingReceiverAddress,jdbcType=VARCHAR}, 
-      #{shippingReceiverZip,jdbcType=VARCHAR}, now(),now())
+      #{shippingReceiverZip,jdbcType=VARCHAR}, now(), now())
   </insert>
   <insert id="insertSelective" parameterType="com.mall.pojo.Shipping" >
     insert into mall_shipping
@@ -187,7 +187,6 @@
   <update id="updateByShippingSelective" parameterType="com.mall.pojo.Shipping">
     update mall_shipping
     <set >
-
       <if test="shippingReceiverName != null" >
         shipping_receiver_name = #{shippingReceiverName,jdbcType=VARCHAR},
       </if>

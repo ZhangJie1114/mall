@@ -17,6 +17,14 @@ public class ProductDetailVo {
     private BigDecimal VoPrice;
     private Integer VoStock;
     private Integer VoStatus;
+    private String VoAmazonUs;
+    private String VoAmazonDe;
+    private String VoAmazonFr;
+    private String VoAmazonJp;
+    private String VoAmazonUk;
+    private String VoAmazonCa;
+    private String VoAmazonAu;
+
     private String VoCreateTime;
     private String VoUpdateTime;
 
@@ -102,6 +110,34 @@ public class ProductDetailVo {
     public void setVoStatus(Integer voStatus) {
         VoStatus = voStatus;
     }
+
+    public String getVoAmazonUs() { return VoAmazonUs; }
+
+    public void setVoAmazonUs(String voAmazonUs) { VoAmazonUs = voAmazonUs; }
+
+    public String getVoAmazonDe() { return VoAmazonDe; }
+
+    public void setVoAmazonDe(String voAmazonDe) { VoAmazonDe = voAmazonDe; }
+
+    public String getVoAmazonFr() { return VoAmazonFr; }
+
+    public void setVoAmazonFr(String voAmazonFr) { VoAmazonFr = voAmazonFr; }
+
+    public String getVoAmazonJp() { return VoAmazonJp; }
+
+    public void setVoAmazonJp(String voAmazonJp) { VoAmazonJp = voAmazonJp; }
+
+    public String getVoAmazonUk() { return VoAmazonUk; }
+
+    public void setVoAmazonUk(String voAmazonUk) { VoAmazonUk = voAmazonUk; }
+
+    public String getVoAmazonCa() { return VoAmazonCa; }
+
+    public void setVoAmazonCa(String voAmazonCa) { VoAmazonCa = voAmazonCa; }
+
+    public String getVoAmazonAu() { return VoAmazonAu; }
+
+    public void setVoAmazonAu(String voAmazonAu) { VoAmazonAu = voAmazonAu; }
 
     public String getVoCreateTime() {
         return VoCreateTime;

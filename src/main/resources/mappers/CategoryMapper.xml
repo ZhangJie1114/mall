@@ -6,7 +6,7 @@
       <idArg column="category_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="category_parent_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="category_name" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="category_status" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="category_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="category_sort_order" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="category_create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="category_update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
@@ -31,7 +31,7 @@
       category_status, category_sort_order, category_create_time, 
       category_update_time)
     values (#{categoryId,jdbcType=INTEGER}, #{categoryParentId,jdbcType=INTEGER}, #{categoryName,jdbcType=VARCHAR}, 
-      #{categoryStatus,jdbcType=BIT}, #{categorySortOrder,jdbcType=INTEGER}, now(), now())
+      #{categoryStatus,jdbcType=INTEGER}, #{categorySortOrder,jdbcType=INTEGER}, now(), now())
   </insert>
   <insert id="insertSelective" parameterType="com.mall.pojo.Category" >
     insert into mall_category
@@ -69,7 +69,7 @@
         #{categoryName,jdbcType=VARCHAR},
       </if>
       <if test="categoryStatus != null" >
-        #{categoryStatus,jdbcType=BIT},
+        #{categoryStatus,jdbcType=INTEGER},
       </if>
       <if test="categorySortOrder != null" >
         #{categorySortOrder,jdbcType=INTEGER},
@@ -92,7 +92,7 @@
         category_name = #{categoryName,jdbcType=VARCHAR},
       </if>
       <if test="categoryStatus != null" >
-        category_status = #{categoryStatus,jdbcType=BIT},
+        category_status = #{categoryStatus,jdbcType=INTEGER},
       </if>
       <if test="categorySortOrder != null" >
         category_sort_order = #{categorySortOrder,jdbcType=INTEGER},
@@ -110,7 +110,7 @@
     update mall_category
     set category_parent_id = #{categoryParentId,jdbcType=INTEGER},
       category_name = #{categoryName,jdbcType=VARCHAR},
-      category_status = #{categoryStatus,jdbcType=BIT},
+      category_status = #{categoryStatus,jdbcType=INTEGER},
       category_sort_order = #{categorySortOrder,jdbcType=INTEGER},
       category_create_time = #{categoryCreateTime,jdbcType=TIMESTAMP},
       category_update_time = now()

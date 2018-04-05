@@ -1,144 +1,144 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mall.dao.UserMapper">
-    <resultMap id="BaseResultMap" type="com.mall.pojo.User">
-        <constructor>
-            <idArg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
-            <arg column="user_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
-            <arg column="user_password" jdbcType="VARCHAR" javaType="java.lang.String"/>
-            <arg column="user_email" jdbcType="VARCHAR" javaType="java.lang.String"/>
-            <arg column="user_phone" jdbcType="VARCHAR" javaType="java.lang.String"/>
-            <arg column="user_question" jdbcType="VARCHAR" javaType="java.lang.String"/>
-            <arg column="user_answer" jdbcType="VARCHAR" javaType="java.lang.String"/>
-            <arg column="user_role" jdbcType="INTEGER" javaType="java.lang.Integer"/>
-            <arg column="user_create_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
-            <arg column="user_update_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
-        </constructor>
-    </resultMap>
-    <sql id="Base_Column_List">
+<mapper namespace="com.mall.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.mall.pojo.User" >
+    <constructor >
+      <idArg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_password" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_email" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_phone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_question" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_answer" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_role" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="user_update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
     user_id, user_name, user_password, user_email, user_phone, user_question, user_answer, 
     user_role, user_create_time, user_update_time
   </sql>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        select
-        <include refid="Base_Column_List"/>
-        from mall_user
-        where user_id = #{userId,jdbcType=INTEGER}
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mall_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from mall_user
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.mall.pojo.User">
+  <insert id="insert" parameterType="com.mall.pojo.User" >
     insert into mall_user (user_id, user_name, user_password, 
       user_email, user_phone, user_question, 
       user_answer, user_role, user_create_time, 
       user_update_time)
     values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
       #{userEmail,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, #{userQuestion,jdbcType=VARCHAR}, 
-      #{userAnswer,jdbcType=VARCHAR}, #{userRole,jdbcType=INTEGER}, now(),now())
+      #{userAnswer,jdbcType=VARCHAR}, #{userRole,jdbcType=INTEGER}, now(), now())
   </insert>
-    <insert id="insertSelective" parameterType="com.mall.pojo.User">
-        insert into mall_user
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="userId != null">
-                user_id,
-            </if>
-            <if test="userName != null">
-                user_name,
-            </if>
-            <if test="userPassword != null">
-                user_password,
-            </if>
-            <if test="userEmail != null">
-                user_email,
-            </if>
-            <if test="userPhone != null">
-                user_phone,
-            </if>
-            <if test="userQuestion != null">
-                user_question,
-            </if>
-            <if test="userAnswer != null">
-                user_answer,
-            </if>
-            <if test="userRole != null">
-                user_role,
-            </if>
-            <if test="userCreateTime != null">
-                user_create_time,
-            </if>
-            <if test="userUpdateTime != null">
-                user_update_time,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="userId != null">
-                #{userId,jdbcType=INTEGER},
-            </if>
-            <if test="userName != null">
-                #{userName,jdbcType=VARCHAR},
-            </if>
-            <if test="userPassword != null">
-                #{userPassword,jdbcType=VARCHAR},
-            </if>
-            <if test="userEmail != null">
-                #{userEmail,jdbcType=VARCHAR},
-            </if>
-            <if test="userPhone != null">
-                #{userPhone,jdbcType=VARCHAR},
-            </if>
-            <if test="userQuestion != null">
-                #{userQuestion,jdbcType=VARCHAR},
-            </if>
-            <if test="userAnswer != null">
-                #{userAnswer,jdbcType=VARCHAR},
-            </if>
-            <if test="userRole != null">
-                #{userRole,jdbcType=INTEGER},
-            </if>
-            <if test="userCreateTime != null">
-                now(),
-            </if>
-            <if test="userUpdateTime != null">
-                now(),
-            </if>
-        </trim>
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.mall.pojo.User">
-        update mall_user
-        <set>
-            <if test="userName != null">
-                user_name = #{userName,jdbcType=VARCHAR},
-            </if>
-            <if test="userPassword != null">
-                user_password = #{userPassword,jdbcType=VARCHAR},
-            </if>
-            <if test="userEmail != null">
-                user_email = #{userEmail,jdbcType=VARCHAR},
-            </if>
-            <if test="userPhone != null">
-                user_phone = #{userPhone,jdbcType=VARCHAR},
-            </if>
-            <if test="userQuestion != null">
-                user_question = #{userQuestion,jdbcType=VARCHAR},
-            </if>
-            <if test="userAnswer != null">
-                user_answer = #{userAnswer,jdbcType=VARCHAR},
-            </if>
-            <if test="userRole != null">
-                user_role = #{userRole,jdbcType=INTEGER},
-            </if>
-            <if test="userCreateTime != null">
-                user_create_time = #{userCreateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="userUpdateTime != null">
-                user_update_time = now(),
-            </if>
-        </set>
-        where user_id = #{userId,jdbcType=INTEGER}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="com.mall.pojo.User">
+  <insert id="insertSelective" parameterType="com.mall.pojo.User" >
+    insert into mall_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userPassword != null" >
+        user_password,
+      </if>
+      <if test="userEmail != null" >
+        user_email,
+      </if>
+      <if test="userPhone != null" >
+        user_phone,
+      </if>
+      <if test="userQuestion != null" >
+        user_question,
+      </if>
+      <if test="userAnswer != null" >
+        user_answer,
+      </if>
+      <if test="userRole != null" >
+        user_role,
+      </if>
+      <if test="userCreateTime != null" >
+        user_create_time,
+      </if>
+      <if test="userUpdateTime != null" >
+        user_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userQuestion != null" >
+        #{userQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="userAnswer != null" >
+        #{userAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="userRole != null" >
+        #{userRole,jdbcType=INTEGER},
+      </if>
+      <if test="userCreateTime != null" >
+        now(),
+      </if>
+      <if test="userUpdateTime != null" >
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mall.pojo.User" >
+    update mall_user
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        user_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        user_email = #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userQuestion != null" >
+        user_question = #{userQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="userAnswer != null" >
+        user_answer = #{userAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="userRole != null" >
+        user_role = #{userRole,jdbcType=INTEGER},
+      </if>
+      <if test="userCreateTime != null" >
+        user_create_time = #{userCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userUpdateTime != null" >
+        user_update_time = now(),
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mall.pojo.User" >
     update mall_user
     set user_name = #{userName,jdbcType=VARCHAR},
       user_password = #{userPassword,jdbcType=VARCHAR},
@@ -151,50 +151,45 @@
       user_update_time = now()
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
-    <select id="checkUsername" parameterType="string" resultType="int">
+  <select id="checkUsername" parameterType="string" resultType="int">
     select COUNT(1) FROM mall_user
     WHERE user_name = #{username}
   </select>
-    <select id="checkEmail" parameterType="string" resultType="int">
+  <select id="checkEmail" parameterType="string" resultType="int">
     select COUNT(1) FROM mall_user
     WHERE user_email = #{email}
   </select>
-    <select id="selectLogin" parameterType="map" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        FROM mall_user
-        WHERE user_name = #{username}
-        and user_password = #{password}
-    </select>
-
-    <select id="selectQuestionByUsername" parameterType="string" resultType="string">
-      select user_question
-      FROM mall_user
-      WHERE user_name = #{username}
+  <select id="selectLogin" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    FROM mall_user
+    WHERE user_name = #{username}
+    and user_password = #{password}
   </select>
-
-    <select id="checkAnswer" parameterType="map" resultType="int">
+  <select id="selectQuestionByUsername" parameterType="string" resultType="string">
+    select user_question
+    FROM mall_user
+    WHERE user_name = #{username}
+  </select>
+  <select id="checkAnswer" parameterType="map" resultType="int">
     select count(1)
     FROM mall_user
     WHERE user_name = #{username}
     and user_question = #{question}
     and user_answer = #{answer}
   </select>
-
-    <update id="updatePasswordByUsername" parameterType="map">
+  <update id="updatePasswordByUsername" parameterType="map">
     update mall_user
     SET user_password = #{passwordNew},user_update_time = now()
     WHERE user_name = #{username}
   </update>
-
-    <select id="checkPassword" parameterType="map" resultType="int">
+  <select id="checkPassword" parameterType="map" resultType="int">
     select count(1)
     FROM mall_user
     WHERE user_password = #{password}
     and user_id = #{userId}
   </select>
-
-    <select id="checkEmailByUser" parameterType="map" resultType="int">
+  <select id="checkEmailByUser" parameterType="map" resultType="int">
     select count(1)
     FROM mall_user
     WHERE user_email = #{email}

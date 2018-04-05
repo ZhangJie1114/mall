@@ -108,7 +108,15 @@ public class ProductServiceImpl implements IProductService{
         productDetailVo.setVoStatus(product.getProductStatus());
         productDetailVo.setVoStock(product.getProductStock());
 
-        productDetailVo.setVoImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix","http://img.jasbon.store/"));
+        productDetailVo.setVoAmazonUs(product.getProductAmazonUs());
+        productDetailVo.setVoAmazonDe(product.getProductAmazonDe());
+        productDetailVo.setVoAmazonFr(product.getProductAmazonFr());
+        productDetailVo.setVoAmazonJp(product.getProductAmazonJp());
+        productDetailVo.setVoAmazonUk(product.getProductAmazonUk());
+        productDetailVo.setVoAmazonCa(product.getProductAmazonCa());
+        productDetailVo.setVoAmazonAu(product.getProductAmazonAu());
+
+        productDetailVo.setVoImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix","//img.jasbon.store/"));
 
         Category category = categoryMapper.selectByPrimaryKey(product.getProductCategoryId());
         if(category == null){
@@ -151,7 +159,7 @@ public class ProductServiceImpl implements IProductService{
         productListVo.setVoPrice(product.getProductPrice());
         productListVo.setVoStatus(product.getProductStatus());
 
-        productListVo.setVoImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix","http://img.jasbon.store/"));
+        productListVo.setVoImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix","//img.jasbon.store/"));
 
         return productListVo;
     }

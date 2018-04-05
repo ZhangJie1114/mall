@@ -176,11 +176,11 @@
   </select>
   <insert id="batchInsert" parameterType="list">
     insert into mall_order_item (order_item_id, order_item_user_id, order_item_order_no,
-      order_item_product_id, order_item_product_name,
-      order_item_product_image, order_item_current_unit_price,
-      order_item_quantity, order_item_total_price,
-      order_item_create_time, order_item_update_time
-      )
+    order_item_product_id, order_item_product_name,
+    order_item_product_image, order_item_current_unit_price,
+    order_item_quantity, order_item_total_price,
+    order_item_create_time, order_item_update_time
+    )
     values
     <foreach collection="orderItemList" index="index" item="item" separator=",">
       (

@@ -33,7 +33,7 @@
       pay_info_platform_status, pay_info_create_time, 
       pay_info_update_time)
     values (#{payInfoId,jdbcType=INTEGER}, #{payInfoUserId,jdbcType=INTEGER}, #{payInfoOrderNo,jdbcType=BIGINT}, 
-      #{payInfoPayPlatform,jdbcType=INTEGER}, #{payInfoPlatformNumber,jdbcType=VARCHAR}, 
+      #{payInfoPayPlatform,jdbcType=INTEGER}, #{payInfoPlatformNumber,jdbcType=VARCHAR},
       #{payInfoPlatformStatus,jdbcType=VARCHAR}, now(), now())
   </insert>
   <insert id="insertSelective" parameterType="com.mall.pojo.PayInfo" >

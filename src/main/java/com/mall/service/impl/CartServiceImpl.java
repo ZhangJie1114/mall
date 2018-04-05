@@ -152,7 +152,7 @@ public class CartServiceImpl implements ICartService{
         return cartVo;
     }
 
-    private  boolean getAllCheckedStatus(Integer userId){
+    private boolean getAllCheckedStatus(Integer userId){
         if(userId == null){
             return false;
         }

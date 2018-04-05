@@ -41,8 +41,8 @@
       order_send_time, order_end_time, order_close_time, 
       order_create_time, order_update_time)
     values (#{orderId,jdbcType=INTEGER}, #{orderNo,jdbcType=BIGINT}, #{orderUserId,jdbcType=INTEGER}, 
-      #{orderShippingId,jdbcType=INTEGER}, #{orderPayment,jdbcType=DECIMAL}, #{orderPaymentType,jdbcType=INTEGER}, 
-      #{orderPostage,jdbcType=INTEGER}, #{orderStatus,jdbcType=INTEGER}, #{orderPaymentTime,jdbcType=TIMESTAMP}, 
+      #{orderShippingId,jdbcType=INTEGER}, #{orderPayment,jdbcType=DECIMAL}, #{orderPaymentType,jdbcType=INTEGER},
+      #{orderPostage,jdbcType=INTEGER}, #{orderStatus,jdbcType=INTEGER}, #{orderPaymentTime,jdbcType=TIMESTAMP},
       #{orderSendTime,jdbcType=TIMESTAMP}, #{orderEndTime,jdbcType=TIMESTAMP}, #{orderCloseTime,jdbcType=TIMESTAMP}, 
       now(), now())
   </insert>

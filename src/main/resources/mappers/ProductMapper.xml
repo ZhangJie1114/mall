@@ -13,6 +13,13 @@
       <arg column="product_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
       <arg column="product_stock" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="product_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="product_amazon_us" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="product_amazon_uk" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="product_amazon_fr" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="product_amazon_de" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="product_amazon_jp" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="product_amazon_ca" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="product_amazon_au" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="product_create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="product_update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
     </constructor>
@@ -20,7 +27,8 @@
   <sql id="Base_Column_List" >
     product_id, product_category_id, product_name, product_subtitle, product_main_image, 
     product_sub_images, product_detail, product_price, product_stock, product_status, 
-    product_create_time, product_update_time
+    product_amazon_us, product_amazon_uk, product_amazon_fr, product_amazon_de, product_amazon_jp, 
+    product_amazon_ca, product_amazon_au, product_create_time, product_update_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -36,12 +44,16 @@
     insert into mall_product (product_id, product_category_id, product_name, 
       product_subtitle, product_main_image, product_sub_images, 
       product_detail, product_price, product_stock, 
-      product_status, product_create_time, product_update_time
-      )
+      product_status, product_amazon_us, product_amazon_uk, 
+      product_amazon_fr, product_amazon_de, product_amazon_jp, 
+      product_amazon_ca, product_amazon_au, product_create_time, 
+      product_update_time)
     values (#{productId,jdbcType=INTEGER}, #{productCategoryId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, 
       #{productSubtitle,jdbcType=VARCHAR}, #{productMainImage,jdbcType=VARCHAR}, #{productSubImages,jdbcType=VARCHAR}, 
       #{productDetail,jdbcType=VARCHAR}, #{productPrice,jdbcType=DECIMAL}, #{productStock,jdbcType=INTEGER}, 
-      #{productStatus,jdbcType=INTEGER}, now(), now())
+      #{productStatus,jdbcType=INTEGER}, #{productAmazonUs,jdbcType=VARCHAR}, #{productAmazonUk,jdbcType=VARCHAR},
+      #{productAmazonFr,jdbcType=VARCHAR}, #{productAmazonDe,jdbcType=VARCHAR}, #{productAmazonJp,jdbcType=VARCHAR}, 
+      #{productAmazonCa,jdbcType=VARCHAR}, #{productAmazonAu,jdbcType=VARCHAR}, now(), now())
   </insert>
   <insert id="insertSelective" parameterType="com.mall.pojo.Product" >
     insert into mall_product
@@ -75,6 +87,27 @@
       </if>
       <if test="productStatus != null" >
         product_status,
+      </if>
+      <if test="productAmazonUs != null" >
+        product_amazon_us,
+      </if>
+      <if test="productAmazonUk != null" >
+        product_amazon_uk,
+      </if>
+      <if test="productAmazonFr != null" >
+        product_amazon_fr,
+      </if>
+      <if test="productAmazonDe != null" >
+        product_amazon_de,
+      </if>
+      <if test="productAmazonJp != null" >
+        product_amazon_jp,
+      </if>
+      <if test="productAmazonCa != null" >
+        product_amazon_ca,
+      </if>
+      <if test="productAmazonAu != null" >
+        product_amazon_au,
       </if>
       <if test="productCreateTime != null" >
         product_create_time,
@@ -114,6 +147,27 @@
       <if test="productStatus != null" >
         #{productStatus,jdbcType=INTEGER},
       </if>
+      <if test="productAmazonUs != null" >
+        #{productAmazonUs,jdbcType=VARCHAR},
+      </if>
+      <if test="productAmazonUk != null" >
+        #{productAmazonUk,jdbcType=VARCHAR},
+      </if>
+      <if test="productAmazonFr != null" >
+        #{productAmazonFr,jdbcType=VARCHAR},
+      </if>
+      <if test="productAmazonDe != null" >
+        #{productAmazonDe,jdbcType=VARCHAR},
+      </if>
+      <if test="productAmazonJp != null" >
+        #{productAmazonJp,jdbcType=VARCHAR},
+      </if>
+      <if test="productAmazonCa != null" >
+        #{productAmazonCa,jdbcType=VARCHAR},
+      </if>
+      <if test="productAmazonAu != null" >
+        #{productAmazonAu,jdbcType=VARCHAR},
+      </if>
       <if test="productCreateTime != null" >
         now(),
       </if>
@@ -152,6 +206,27 @@
       <if test="productStatus != null" >
         product_status = #{productStatus,jdbcType=INTEGER},
       </if>
+      <if test="productAmazonUs != null" >
+        product_amazon_us = #{productAmazonUs,jdbcType=VARCHAR},
+      </if>
+      <if test="productAmazonUk != null" >
+        product_amazon_uk = #{productAmazonUk,jdbcType=VARCHAR},
+      </if>
+      <if test="productAmazonFr != null" >
+        product_amazon_fr = #{productAmazonFr,jdbcType=VARCHAR},
+      </if>
+      <if test="productAmazonDe != null" >
+        product_amazon_de = #{productAmazonDe,jdbcType=VARCHAR},
+      </if>
+      <if test="productAmazonJp != null" >
+        product_amazon_jp = #{productAmazonJp,jdbcType=VARCHAR},
+      </if>
+      <if test="productAmazonCa != null" >
+        product_amazon_ca = #{productAmazonCa,jdbcType=VARCHAR},
+      </if>
+      <if test="productAmazonAu != null" >
+        product_amazon_au = #{productAmazonAu,jdbcType=VARCHAR},
+      </if>
       <if test="productCreateTime != null" >
         product_create_time = #{productCreateTime,jdbcType=TIMESTAMP},
       </if>
@@ -172,6 +247,13 @@
       product_price = #{productPrice,jdbcType=DECIMAL},
       product_stock = #{productStock,jdbcType=INTEGER},
       product_status = #{productStatus,jdbcType=INTEGER},
+      product_amazon_us = #{productAmazonUs,jdbcType=VARCHAR},
+      product_amazon_uk = #{productAmazonUk,jdbcType=VARCHAR},
+      product_amazon_fr = #{productAmazonFr,jdbcType=VARCHAR},
+      product_amazon_de = #{productAmazonDe,jdbcType=VARCHAR},
+      product_amazon_jp = #{productAmazonJp,jdbcType=VARCHAR},
+      product_amazon_ca = #{productAmazonCa,jdbcType=VARCHAR},
+      product_amazon_au = #{productAmazonAu,jdbcType=VARCHAR},
       product_create_time = #{productCreateTime,jdbcType=TIMESTAMP},
       product_update_time = now()
     where product_id = #{productId,jdbcType=INTEGER}

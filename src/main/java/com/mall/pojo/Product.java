@@ -24,11 +24,25 @@ public class Product {
 
     private Integer productStatus;
 
+    private String productAmazonUs;
+
+    private String productAmazonUk;
+
+    private String productAmazonFr;
+
+    private String productAmazonDe;
+
+    private String productAmazonJp;
+
+    private String productAmazonCa;
+
+    private String productAmazonAu;
+
     private Date productCreateTime;
 
     private Date productUpdateTime;
 
-    public Product(Integer productId, Integer productCategoryId, String productName, String productSubtitle, String productMainImage, String productSubImages, String productDetail, BigDecimal productPrice, Integer productStock, Integer productStatus, Date productCreateTime, Date productUpdateTime) {
+    public Product(Integer productId, Integer productCategoryId, String productName, String productSubtitle, String productMainImage, String productSubImages, String productDetail, BigDecimal productPrice, Integer productStock, Integer productStatus, String productAmazonUs, String productAmazonUk, String productAmazonFr, String productAmazonDe, String productAmazonJp, String productAmazonCa, String productAmazonAu, Date productCreateTime, Date productUpdateTime) {
         this.productId = productId;
         this.productCategoryId = productCategoryId;
         this.productName = productName;
@@ -39,6 +53,13 @@ public class Product {
         this.productPrice = productPrice;
         this.productStock = productStock;
         this.productStatus = productStatus;
+        this.productAmazonUs = productAmazonUs;
+        this.productAmazonUk = productAmazonUk;
+        this.productAmazonFr = productAmazonFr;
+        this.productAmazonDe = productAmazonDe;
+        this.productAmazonJp = productAmazonJp;
+        this.productAmazonCa = productAmazonCa;
+        this.productAmazonAu = productAmazonAu;
         this.productCreateTime = productCreateTime;
         this.productUpdateTime = productUpdateTime;
     }
@@ -125,6 +146,62 @@ public class Product {
 
     public void setProductStatus(Integer productStatus) {
         this.productStatus = productStatus;
+    }
+
+    public String getProductAmazonUs() {
+        return productAmazonUs;
+    }
+
+    public void setProductAmazonUs(String productAmazonUs) {
+        this.productAmazonUs = productAmazonUs == null ? null : productAmazonUs.trim();
+    }
+
+    public String getProductAmazonUk() {
+        return productAmazonUk;
+    }
+
+    public void setProductAmazonUk(String productAmazonUk) {
+        this.productAmazonUk = productAmazonUk == null ? null : productAmazonUk.trim();
+    }
+
+    public String getProductAmazonFr() {
+        return productAmazonFr;
+    }
+
+    public void setProductAmazonFr(String productAmazonFr) {
+        this.productAmazonFr = productAmazonFr == null ? null : productAmazonFr.trim();
+    }
+
+    public String getProductAmazonDe() {
+        return productAmazonDe;
+    }
+
+    public void setProductAmazonDe(String productAmazonDe) {
+        this.productAmazonDe = productAmazonDe == null ? null : productAmazonDe.trim();
+    }
+
+    public String getProductAmazonJp() {
+        return productAmazonJp;
+    }
+
+    public void setProductAmazonJp(String productAmazonJp) {
+        this.productAmazonJp = productAmazonJp == null ? null : productAmazonJp.trim();
+    }
+
+    public String getProductAmazonCa() {
+        return productAmazonCa;
+    }
+
+    public void setProductAmazonCa(String productAmazonCa) {
+        this.productAmazonCa = productAmazonCa == null ? null : productAmazonCa.trim();
+    }
+
+    public String getProductAmazonAu() {
+        return productAmazonAu;
+    }
+
+    public void setProductAmazonAu(String productAmazonAu) {
+        this.productAmazonAu = productAmazonAu == null ? null : productAmazonAu.trim();
     }
 
     public Date getProductCreateTime() {

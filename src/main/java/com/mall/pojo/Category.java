@@ -9,7 +9,7 @@ public class Category {
 
     private String categoryName;
 
-    private Boolean categoryStatus;
+    private Integer categoryStatus;
 
     private Integer categorySortOrder;
 
@@ -17,7 +17,7 @@ public class Category {
 
     private Date categoryUpdateTime;
 
-    public Category(Integer categoryId, Integer categoryParentId, String categoryName, Boolean categoryStatus, Integer categorySortOrder, Date categoryCreateTime, Date categoryUpdateTime) {
+    public Category(Integer categoryId, Integer categoryParentId, String categoryName, Integer categoryStatus, Integer categorySortOrder, Date categoryCreateTime, Date categoryUpdateTime) {
         this.categoryId = categoryId;
         this.categoryParentId = categoryParentId;
         this.categoryName = categoryName;
@@ -55,11 +55,11 @@ public class Category {
         this.categoryName = categoryName == null ? null : categoryName.trim();
     }
 
-    public Boolean getCategoryStatus() {
+    public Integer getCategoryStatus() {
         return categoryStatus;
     }
 
-    public void setCategoryStatus(Boolean categoryStatus) {
+    public void setCategoryStatus(Integer categoryStatus) {
         this.categoryStatus = categoryStatus;
     }
 
@@ -85,21 +85,5 @@ public class Category {
 
     public void setCategoryUpdateTime(Date categoryUpdateTime) {
         this.categoryUpdateTime = categoryUpdateTime;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Category category = (Category) o;
-
-        return categoryId != null ? categoryId.equals(category.categoryId) : category.categoryId == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        return categoryId != null ? categoryId.hashCode() : 0;
     }
 }
