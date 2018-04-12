@@ -108,11 +108,11 @@ public class ProductServiceImpl implements IProductService{
         productDetailVo.setVoStatus(product.getProductStatus());
         productDetailVo.setVoStock(product.getProductStock());
 
-        productDetailVo.setVoAmazonUs(product.getProductAmazonUs());
-        productDetailVo.setVoAmazonDe(product.getProductAmazonDe());
-        productDetailVo.setVoAmazonFr(product.getProductAmazonFr());
-        productDetailVo.setVoAmazonJp(product.getProductAmazonJp());
         productDetailVo.setVoAmazonUk(product.getProductAmazonUk());
+        productDetailVo.setVoAmazonFr(product.getProductAmazonFr());
+        productDetailVo.setVoAmazonDe(product.getProductAmazonDe());
+        productDetailVo.setVoAmazonJp(product.getProductAmazonJp());
+        productDetailVo.setVoAmazonUs(product.getProductAmazonUs());
         productDetailVo.setVoAmazonCa(product.getProductAmazonCa());
         productDetailVo.setVoAmazonAu(product.getProductAmazonAu());
 

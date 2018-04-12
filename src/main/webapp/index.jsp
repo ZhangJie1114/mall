@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
+    <%--<meta http-equiv="Refresh" content="0; URL=https://www.jasbon.store" />--%>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
+
 <h2>Hello Mall!</h2>
 
 springmvc上传文件

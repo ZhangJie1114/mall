@@ -24,8 +24,6 @@ public class Product {
 
     private Integer productStatus;
 
-    private String productAmazonUs;
-
     private String productAmazonUk;
 
     private String productAmazonFr;
@@ -33,6 +31,8 @@ public class Product {
     private String productAmazonDe;
 
     private String productAmazonJp;
+
+    private String productAmazonUs;
 
     private String productAmazonCa;
 
@@ -42,7 +42,7 @@ public class Product {
 
     private Date productUpdateTime;
 
-    public Product(Integer productId, Integer productCategoryId, String productName, String productSubtitle, String productMainImage, String productSubImages, String productDetail, BigDecimal productPrice, Integer productStock, Integer productStatus, String productAmazonUs, String productAmazonUk, String productAmazonFr, String productAmazonDe, String productAmazonJp, String productAmazonCa, String productAmazonAu, Date productCreateTime, Date productUpdateTime) {
+    public Product(Integer productId, Integer productCategoryId, String productName, String productSubtitle, String productMainImage, String productSubImages, String productDetail, BigDecimal productPrice, Integer productStock, Integer productStatus, String productAmazonUk, String productAmazonFr, String productAmazonDe, String productAmazonJp, String productAmazonUs, String productAmazonCa, String productAmazonAu, Date productCreateTime, Date productUpdateTime) {
         this.productId = productId;
         this.productCategoryId = productCategoryId;
         this.productName = productName;
@@ -53,11 +53,11 @@ public class Product {
         this.productPrice = productPrice;
         this.productStock = productStock;
         this.productStatus = productStatus;
-        this.productAmazonUs = productAmazonUs;
         this.productAmazonUk = productAmazonUk;
         this.productAmazonFr = productAmazonFr;
         this.productAmazonDe = productAmazonDe;
         this.productAmazonJp = productAmazonJp;
+        this.productAmazonUs = productAmazonUs;
         this.productAmazonCa = productAmazonCa;
         this.productAmazonAu = productAmazonAu;
         this.productCreateTime = productCreateTime;
@@ -148,14 +148,6 @@ public class Product {
         this.productStatus = productStatus;
     }
 
-    public String getProductAmazonUs() {
-        return productAmazonUs;
-    }
-
-    public void setProductAmazonUs(String productAmazonUs) {
-        this.productAmazonUs = productAmazonUs == null ? null : productAmazonUs.trim();
-    }
-
     public String getProductAmazonUk() {
         return productAmazonUk;
     }
@@ -186,6 +178,14 @@ public class Product {
 
     public void setProductAmazonJp(String productAmazonJp) {
         this.productAmazonJp = productAmazonJp == null ? null : productAmazonJp.trim();
+    }
+
+    public String getProductAmazonUs() {
+        return productAmazonUs;
+    }
+
+    public void setProductAmazonUs(String productAmazonUs) {
+        this.productAmazonUs = productAmazonUs == null ? null : productAmazonUs.trim();
     }
 
     public String getProductAmazonCa() {
